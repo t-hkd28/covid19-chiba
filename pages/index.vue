@@ -86,6 +86,16 @@
           :url="''"
         />
       </v-col>
+      <v-col cols="12" md="6" class="DataCard">
+        <metro-bar-chart
+          title="都営地下鉄の利用者数の推移"
+          :title-id="'predicted-number-of-toei-subway-passengers'"
+          :chart-id="'metro-bar-chart'"
+          :chart-data="metroGraph"
+          :chart-option="metroGraphOption"
+          :date="metroGraph.date"
+        />
+      </v-col>
       -->
     </v-row>
   </div>
@@ -94,22 +104,31 @@
 <script>
 import PageHeader from '@/components/PageHeader.vue'
 import TimeBarChart from '@/components/TimeBarChart.vue'
+import MetroBarChart from '@/components/MetroBarChart.vue'
+import TimeStackedBarChart from '@/components/TimeStackedBarChart.vue'
 import WhatsNew from '@/components/WhatsNew.vue'
 import StaticInfo from '@/components/StaticInfo.vue'
 import Data from '@/data/data.json'
+import MetroData from '@/data/metro.json'
 import DataTable from '@/components/DataTable.vue'
 import formatGraph from '@/utils/formatGraph'
 import formatTable from '@/utils/formatTable'
 import formatConfirmedCases from '@/utils/formatConfirmedCases'
 import News from '@/data/news.json'
+import SvgCard from '@/components/SvgCard.vue'
+import ConfirmedCasesTable from '@/components/ConfirmedCasesTable.vue'
 
 export default {
   components: {
     PageHeader,
     TimeBarChart,
+    MetroBarChart,
+    TimeStackedBarChart,
     WhatsNew,
     StaticInfo,
-    DataTable
+    DataTable,
+    SvgCard,
+    ConfirmedCasesTable
   },
   data() {
     // 感染者数グラフ
@@ -125,6 +144,7 @@ export default {
     // 帰国者・接触者電話相談センター相談件数
     const querentsGraph = formatGraph(Data.querents.data)
     // 都営地下鉄の利用者数の推移
+    const metroGraph = MetroData
     // 検査実施日別状況
     const inspectionsGraph = [
       Data.inspections_summary.data['都内'],
@@ -159,6 +179,7 @@ export default {
       dischargesGraph,
       contactsGraph,
       querentsGraph,
+      metroGraph,
       inspectionsGraph,
       inspectionsItems,
       inspectionsLabels,
@@ -213,6 +234,12 @@ export default {
             title(tooltipItems, _) {
               const label = tooltipItems[0].label
               return `期間: ${label}`
+            },
+            label(tooltipItem, data) {
+              const currentData = data.datasets[tooltipItem.datasetIndex]
+              const percentage = `${currentData.data[tooltipItem.index]}%`
+
+              return `${metroGraph.base_period}の利用者数との相対値: ${percentage}`
             }
           }
         }
