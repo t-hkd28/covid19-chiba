@@ -2,7 +2,7 @@
   <div class="SideNavigation">
     <div class="SideNavigation-HeadingContainer sp-flex">
       <v-icon
-        class="SideNavigation-HeadingIcon sp-inline-block"
+        class="SideNavigation-HeadingIcon pc-none"
         :aria-label="$t('Navi Open')"
         @click="openNavi"
       >
@@ -10,7 +10,7 @@
       </v-icon>
       <nuxt-link to="/" class="SideNavigation-HeadingLink">
         <div class="SideNavigation-Logo">
-          <img src="/logo.svg" :alt="$t('Tokyo')" />
+          <img src="/logo.svg" :alt="$t('Prefecture')" />
         </div>
         <h1 class="SideNavigation-Heading">
           {{ $t('COVID-19') }}<br />{{ $t('Measures site') }}
@@ -20,7 +20,7 @@
     <v-divider class="SideNavigation-HeadingDivider" />
     <div class="sp-none" :class="{ open: isNaviOpen }">
       <v-icon
-        class="SideNavigation-ListContainerIcon sp-inline-block"
+        class="SideNavigation-ListContainerIcon pc-none"
         :aria-label="$t('Navi Close')"
         @click="closeNavi"
       >
@@ -39,7 +39,7 @@
       </v-list>
       <div class="SideNavigation-Footer">
         <div class="SideNavigation-SocialLinkContainer">
-          <a
+          <!-- <a
             href="https://line.me/R/ti/p/%40822sysfc"
             target="_blank"
             rel="noopener"
@@ -53,11 +53,63 @@
           >
             <img src="/twitter.png" alt="Twitter" />
           </a>
+          <a
+            href="https://www.facebook.com/tochokoho"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="/facebook.png" alt="Facebook" />
+          </a> -->
+          <a
+            href="https://github.com/civictechzenchiba/covid19-chiba"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="@/assets/images/github.png" alt="GitHub" />
+          </a>
         </div>
-        <small class="SideNavigation-Copyright" lang="en">
-          Copyright &copy; 2020 Tokyo Metropolitan Government. All Rights
-          Reserved.
-        </small>
+        <div class="SideNavigation-Copyright">
+          <a
+            href="//creativecommons.org/licenses/by/4.0/deed.ja"
+            target="_blank"
+            rel="noopener"
+            class="license"
+          >
+            Under
+            <span class="license__title">CC BY 4.0</span>
+            <img
+              src="@/assets/images/cc-by-icon.svg?inline"
+              alt="CC BY 4.0"
+              class="license__icon"
+            />
+          </a>
+          <div class="sponsor">
+            Data by:<br />
+            <a
+              href="https://www.pref.chiba.lg.jp/"
+              target="_blank"
+              rel="noopener"
+              class="sponsor__pref"
+            >
+              千葉県
+            </a>
+          </div>
+          <div class="sponsor">
+            Operations by:<br />
+            <a
+              href="https://sites.google.com/view/civictechzenchiba/"
+              target="_blank"
+              rel="noopener"
+              class="sponsor__image"
+            >
+              <span>CivicTechZenChiba</span>
+              <img
+                src="@/assets/images/civictechzenchiba-icon.jpg"
+                alt="CivicTechZenChiba"
+              />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,20 +120,19 @@
   "ja": {
     "Navi Open": "サイドメニュー項目を開く",
     "Navi Close": "サイドメニュー項目を閉じる",
-    "Tokyo": "東京都",
+    "Prefecture": "千葉県",
     "COVID-19": "新型コロナウイルス感染症",
     "Measures site": "対策サイト",
-    "Tokyo Metropolitan Government": "東京都",
-    "Tokyo COVID-19 Task Force": "新型コロナウイルス感染症対策本部",
-    "The latest updates": "都内の最新感染動向",
-    "If you have any symptoms": "新型コロナウイルス感染症が心配なときに",
+    "Chiba Prefecture": "千葉県",
+    "The latest updates": "県内の最新感染動向",
     "for Families with children": "お子様をお持ちの皆様へ",
-    "for Citizens": "都民の皆様へ",
+    "for Citizens": "県民の皆様へ",
     "for Enterprises and Employees": "企業の皆様・はたらく皆様へ",
-    "Official statements from Task Force": "東京都新型コロナウイルス感染症対策本部報",
-    "Cancelled public events": "東京都主催等 中止又は延期するイベント等",
-    "Government official website": "東京都公式ホームページ",
-    "Message from Governor Koike": "知事からのメッセージ",
+    "Official statements from Task Force": "新型コロナウイルス感染症への対応について",
+    "About information counter": "電話相談窓口について",
+    "Cancelled public events": "臨時休館情報",
+    "Government official website": "千葉県公式ホームページ",
+    "Message from Governor Morita": "知事からのメッセージ",
     "About us": "当サイトについて"
   }
 }
@@ -108,12 +159,13 @@ export default {
           title: this.$t('The latest updates'),
           link: '/'
         },
-        {
-          icon: 'covid',
-          title: this.$t('If you have any symptoms'),
-          link: '/flow',
-          divider: true
-        },
+        // {
+        //   icon: 'covid',
+        //   title: this.$t('If you have any symptoms'),
+        //   link:
+        //     'https://www.pref.chiba.lg.jp/shippei/kansenshou/2019-ncov.html',
+        //   divider: true
+        // },
         {
           icon: 'parent',
           title: this.$t('for Families with children'),
@@ -122,7 +174,7 @@ export default {
         {
           icon: 'mdi-account-multiple',
           title: this.$t('for Citizens'),
-          link: 'https://www.metro.tokyo.lg.jp/tosei/tosei/news/2019-ncov.html'
+          link: 'https://www.pref.chiba.lg.jp/shippei/kansenshou/2019-ncov.html'
         },
         {
           icon: 'mdi-domain',
@@ -133,17 +185,23 @@ export default {
         {
           title: this.$t('Official statements from Task Force'),
           link:
-            'https://www.bousai.metro.tokyo.lg.jp/taisaku/saigai/1007261/index.html'
+            'https://www.pref.chiba.lg.jp/cate/kfk/kenkou-iryou/kenkouzukuri/kansenshou/coronavirus.html'
+        },
+        {
+          title: this.$t('About information counter'),
+          link:
+            'https://www.pref.chiba.lg.jp/kenfuku/kansenshou/singata-koronauirusu-kannrennhaienn.html'
         },
         {
           title: this.$t('Cancelled public events'),
           link:
-            'https://www.seisakukikaku.metro.tokyo.lg.jp/information/event02.html'
+            'https://www.pref.chiba.lg.jp/kouhou/homepage/2019/ncov-index.html',
+          divider: true
         },
         {
-          title: this.$t('Message from Governor Koike'),
+          title: this.$t('Message from Governor Morita'),
           link:
-            'https://www.metro.tokyo.lg.jp/tosei/governor/governor/katsudo/2020/03/03_00.html'
+            'https://www.pref.chiba.lg.jp/kenfuku/kansenshou/ncov/mes-chiji.html'
         },
         {
           title: this.$t('About us'),
@@ -151,10 +209,13 @@ export default {
         },
         {
           title: this.$t('Government official website'),
-          link: 'https://www.metro.tokyo.lg.jp/',
+          link: 'https://www.pref.chiba.lg.jp/',
           divider: true
         }
       ]
+    },
+    isClass() {
+      return item => (item.title.charAt(0) === '【' ? 'kerningLeft' : '')
     }
   },
   methods: {
@@ -182,7 +243,6 @@ export default {
     }
   }
   &-HeadingIcon {
-    display: none;
     margin-right: 16px;
   }
   &-HeadingLink {
@@ -193,7 +253,6 @@ export default {
     text-decoration: none;
   }
   &-ListContainerIcon {
-    display: none;
     margin: 24px 16px 0;
   }
   &-ListItemContainer {
@@ -241,32 +300,88 @@ export default {
   &-Copyright {
     display: block;
     margin-top: 10px;
-    font-size: 8px;
-    line-height: 1.2;
     color: $gray-1;
-    font-weight: bold;
   }
 }
 .open {
   @include lessThan($small) {
-    position: absolute;
+    position: fixed;
     top: 0;
+    bottom: 0;
     left: 0;
     display: block !important;
     width: 100%;
-    z-index: 100;
+    z-index: z-index-of(opened-side-navigation);
     background-color: $white;
+  }
+}
+@include largerThan($small) {
+  .pc-none {
+    display: none;
   }
 }
 @include lessThan($small) {
   .sp-flex {
     display: flex;
   }
-  .sp-inline-block {
-    display: inline-block;
-  }
   .sp-none {
     display: none;
+  }
+}
+.license {
+  text-decoration: none;
+  color: $gray-1;
+  font-size: 16px;
+
+  &__title {
+    display: inline-block;
+    width: 0;
+    height: 1.5rem;
+    overflow: hidden;
+  }
+
+  &__icon {
+    display: inline-block;
+    height: 24px;
+  }
+}
+.sponsor {
+  color: $gray-1;
+  font-size: 16px;
+
+  &:nth-child(n + 2) {
+    margin-top: 12px;
+  }
+
+  &__pref {
+    font-size: 26px;
+    text-decoration: none;
+    color: $gray-1;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__image {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    span {
+      display: inline-block;
+      width: 0;
+      height: 1.5rem;
+      overflow: hidden;
+    }
+
+    img {
+      width: 64px;
+      height: 64px;
+    }
   }
 }
 </style>
