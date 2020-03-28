@@ -76,7 +76,6 @@
             class="license"
           >
             Under
-            <span class="license__title">CC BY 4.0</span>
             <img
               src="@/assets/images/cc-by-icon.svg?inline"
               alt="CC BY 4.0"
@@ -119,7 +118,7 @@
               <span>CivicTechZenChiba</span>
               <img
                 src="@/assets/images/civictechzenchiba-icon.jpg"
-                alt="CivicTechZenChiba"
+                alt="CivicTechZenChiba Icon"
               />
             </a>
           </div>
@@ -283,7 +282,7 @@ export default {
   &-Heading {
     margin-top: 8px;
     font-size: 13px;
-    color: #898989;
+    color: #707070;
     padding: 0.5em 0;
     text-decoration: none;
     @include lessThan($small) {
@@ -391,10 +390,11 @@ export default {
     }
 
     span {
-      display: inline-block;
-      width: 0;
-      height: 1.5rem;
+      position: absolute;
+      width: 1px;
+      height: 1px;
       overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
     }
 
     img {
